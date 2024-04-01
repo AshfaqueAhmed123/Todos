@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --primary: #222;
+    --secondary: rgb(154, 148, 193);
+    --task-disabled: rgba(115, 113, 124, 0.525);
+    --chechbox-color: var(--task-disabled);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+    height: 90%;
+    background-color: var(--primary);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#tittle {
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #eee;
+    width: 80%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.container .child-container {
+    background-color: var(--primary);
+    width: 80%;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.child-container .add-task {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.add-task input {
+    width: 50%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+.add-task input:focus {
+    outline: 2px solid orangered;
+}
+
+.add-task button {
+    width: 15%;
+    height: 100%;
+    background-color: orangered;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.add-task button:hover {
+    opacity: 0.80;
+    box-shadow: 1px 1px 20px 4px orangered;
+}
+
+.add-task button img {
+    width: 20px;
+}
+
+.child-container .tasks-container {
+    width: 100%;
+    height: 90%;
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.task {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px !important;
+}
+
+.task .status-section {
+    width: 10%;
+}
+
+.task .status-section input[type='checkbox'] {
+    appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+.copletedTask {
+    background-color: var(--task-disabled);
+    cursor: default !important;
+    opacity: 0.50;
+}
+
+
+.status-section input[type='checkbox']:checked {
+    appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    border-radius: 100%;
+    background-color: var(--chechbox-color);
+    /* display: none; */
+    place-content: center;
+    cursor: pointer;
+}
+
+.copletedTask .status-section input[type='checkbox']::after {
+    content: '';
+    font-size: small;
+}
+
+.task .content-section {
+    width: 80%;
+}
+
+.task .content-section p {
+    padding: 10px;
+}
+
+.task .content-section p::selection {
+    background-color: var(--secondary);
+    border: none;
+    outline: none;
+}
+
+
+.task .editing-section {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hoverable:hover {
+    opacity: 0.80;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width:700px) {
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 0px !important;
+    }
+
+    .container .child-container {
+        width: 100%;
+        border-radius: 0px !important;
+    }
+
+    .add-task {
+        width: 100%;
+        height: 20% !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        margin-bottom: 30px !important;
+        border-radius: 0px !important;
+    }
+
+    .add-task input {
+        width: 100%;
+        padding: 0px;
+        height: 50%;
+        padding: 4px 15px;
+    }
+
+    .add-task button {
+        width: 100%;
+        padding: 0px;
+        height: 50%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px !important;
+        gap: 5px;
+    }
+
+    .add-task button:hover {
+        box-shadow: none;
+    }
+
+    .tasks-container {
+        height: 85% !important;
+        width: 100%;
+        padding: 5px !important;
+        margin: 0 !important;
+        border-radius: 0px !important;
+    }
+
+    #tittle {
+        padding: 0 !important;
+        height: 5%;
+        border-radius: 0px !important;
+        margin-bottom: 20px !important;
+        justify-content: start;
+
+    }
+
+    .task {
+        padding: 0px 35px;
+        justify-content: space-between;
+        margin: 0;
+        margin-bottom: 4px;
+        border-radius: 10px !important;
+    }
+}
+    </style>
+   
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 id="tittle">todo list</h1>
+        <div class="child-container">
+            <form id="form" class="add-task">
+                <input type="text" placeholder="Enter Task.." id="input">
+                <button id="add-btn" type="submit">
+                    Add Task <span style="width: 20px;">
+                        <svg fill='white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                    </span>
+                </button>
+            </form>
+            <div class="tasks-container" id="tasks-container"></div>
+        </div>
+    </div>
+
+    <script>
+        //DOM Elements
+const form = document.getElementById("form");
+const tasksContainer = document.getElementById("tasks-container");
+const input = document.querySelector("form input");
+const submitBtn = document.querySelector("form button");
+
+// Functions
+
+// create new task component
+function taskComponent(task) {
+  const taskItem = document.createElement("div");
+  taskItem.classList.add("task");
+  taskItem.innerHTML = `
+   <div class="status-section">
+   <input type="checkbox" id='chechbox'>
+  </div>
+  <div class="content-section">
+   <p contenteditable="true" id='task-text'>${task.content}</p>
+  </div>
+  <div class="editing-section">
+   <span id='removeTask' class='hoverable'>❌</span>
+  </div>
+   `;
+  taskItem.id = task.id;
+  tasksContainer.appendChild(taskItem);
+}
+
+function taskMarkedAsDone(task) {
+  const taskItem = document.createElement("div");
+  taskItem.classList.add("task");
+  taskItem.classList.add("copletedTask");
+  taskItem.innerHTML = `
+   <div class="status-section">
+   <input type="checkbox" id='chechbox'>
+  </div>
+  <div class="content-section">
+   <p contenteditable="true" id='task-text'>${task.content}</p>
+  </div>
+  <div class="editing-section">
+   <span id='removeTask' class='hoverable'>❌</span>
+  </div>
+   `;
+  taskItem.id = task.id;
+  tasksContainer.appendChild(taskItem);
+}
+
+function render(tasks) {
+  tasks.forEach((task) => {
+    if (task.isCompleted) {
+      taskMarkedAsDone(task);
+      return;
+    }
+    taskComponent(task);
+  });
+}
+
+// events
+
+window.addEventListener("DOMContentLoaded", (e) => {
+  // when first time window will load check that if tasks are present in the localStorage if not create them
+  let tasks = [];
+  if (localStorage.getItem("tasks") == null) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  // load tasks from storage if present
+  if (JSON.parse(localStorage.getItem("tasks") != null || "")) {
+    render(JSON.parse(localStorage.getItem("tasks")));
+  }
+
+  // when form is submmitted  create and add a new task item
+  form.addEventListener("submit", (e) => {
+    if (input.value == "") {
+      e.preventDefault();
+      return;
+    }
+    e.preventDefault();
+
+    // create new task object
+    let task = {
+      id: new Date().getTime(),
+      content: input.value,
+      isCompleted: false,
+    };
+
+    // add task in the tasks array
+    input.value = "";
+    tasks.push(task);
+
+    // save tasks array in the localstorage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    // render the tasks
+    tasks = localStorage.getItem("tasks");
+    tasks = JSON.parse(tasks);
+    tasksContainer.innerHTML = "";
+    render(tasks);
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target.id == "removeTask") {
+      // delete task
+      let taskID = e.target.parentElement.parentElement.id;
+
+      // get the taskID id and remove that task from the tasks array
+      let newTasks = [];
+      JSON.parse(localStorage.getItem("tasks")).forEach((task) => {
+        if (task.id == taskID) {
+          return;
+        }
+        newTasks.push(task);
+      });
+      localStorage.setItem("tasks", JSON.stringify(newTasks));
+      tasksContainer.innerHTML = "";
+      render(JSON.parse(localStorage.getItem("tasks")));
+    }
+  });
+
+  // listen for task mark checked event and mark task as done
+  window.addEventListener("change", (e) => {
+    if (
+      e.target.id == "chechbox" &&
+      e.target.hasAttribute("type", "checkbox")
+    ) {
+      let task = e.target.parentElement.parentElement;
+      let taskID = task.id;
+
+      let newTasks = [];
+      JSON.parse(localStorage.getItem("tasks")).forEach((task) => {
+        if (task.id == taskID) {
+          task.isCompleted = true;
+          newTasks.push(task);
+        } else {
+          newTasks.push(task);
+        }
+      });
+      localStorage.setItem("tasks", JSON.stringify(newTasks));
+      tasksContainer.innerHTML = "";
+      render(JSON.parse(localStorage.getItem("tasks")));
+    }
+  });
+
+  // edit tasks
+  window.addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
+      if (e.target.id == "task-text") {
+        e.preventDefault();
+
+        let taskID = e.target.parentElement.parentElement.id;
+
+        let newTasks = [];
+        JSON.parse(localStorage.getItem("tasks")).forEach((task) => {
+          if (task.id == taskID) {
+            task.content = e.target.innerHTML;
+            newTasks.push(task);
+          } else {
+            newTasks.push(task);
+          }
+        });
+        localStorage.setItem("tasks", JSON.stringify(newTasks));
+        tasksContainer.innerHTML = "";
+        render(JSON.parse(localStorage.getItem("tasks")));
+      }
+    }
+  });
+});
+
+// written by : Ashfaque Ahmed
+
+    </script>
+</body>
+
+</html>
