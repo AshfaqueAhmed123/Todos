@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="container">
+
+       
+        <h1 id="tittle">
+            
+            <span id="title">todo list</span>
+
+            <div class="counting-section">
+                <div class="total">total: <span id="total">0</span></div>
+                <div class="remaining">remaining: <span id="remaining">0</span></div>
+                <div class="completed">completed: <span id="completed">0</span></div>
+            </div>
+    
+
+        </h1>
+        <div class="child-container">
+            <form id="form" class="add-task">
+                <input type="text" placeholder="Enter Task.." id="input">
+                <button id="add-btn" type="submit">
+                    Add Task <span style="width: 20px;">
+                        <svg fill='white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                    </span>
+                </button>
+
+                <button id="search-icon">
+                    <img src="./Assets/search-icon.svg">
+                </button>
+
+            </form>
+            <div class="tasks-container" id="tasks-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

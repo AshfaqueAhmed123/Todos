@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+:root {
+    --primary: #222;
+    --secondary: rgb(154, 148, 193);
+    --task-disabled: rgba(115, 113, 124, 0.525);
+    --chechbox-color: var(--task-disabled);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background-color: var(--primary);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#tittle{
+    width: 80%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+#tittle #title {
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #eee;
+}
+
+
+#tittle .counting-section{
+    font-size: large !important;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+#tittle .counting-section div{
+    text-align: left;
+    color: white;
+    text-transform: capitalize;
+    text-decoration: underline;
+    line-height:30px;
+}
+
+#tittle .counting-section div #total{
+    color: red;
+}
+
+#tittle .counting-section div #remaining{
+    color: red;
+}
+
+#tittle .counting-section div #completed{
+    color: lime;
+
+}
+
+
+.container .child-container {
+    background-color: var(--primary);
+    width: 80%;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.child-container .add-task {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.add-task input {
+    width: 50%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+.add-task input:focus {
+    outline: 2px solid orangered;
+}
+
+.add-task button {
+    width: 15%;
+    height: 100%;
+    background-color: orangered;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.add-task button:hover {
+    opacity: 0.80;
+    box-shadow: 1px 1px 20px 4px orangered;
+}
+
+.add-task button img {
+    width: 20px;
+}
+
+.child-container .tasks-container {
+    width: 100%;
+    height: 90%;
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.task {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px !important;
+}
+
+.task .status-section {
+    width: 10%;
+}
+
+.task .status-section input[type='checkbox'] {
+    appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+.copletedTask {
+    background-color: var(--task-disabled);
+    cursor: default !important;
+    opacity: 0.50;
+}
+
+
+.status-section input[type='checkbox']:checked {
+    appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid gray;
+    border-radius: 100%;
+    background-color: var(--chechbox-color);
+    /* display: none; */
+    place-content: center;
+    cursor: pointer;
+}
+
+.copletedTask .status-section input[type='checkbox']::after {
+    content: '';
+    font-size: small;
+}
+
+.task .content-section {
+    width: 80%;
+}
+
+.task .content-section p {
+    padding: 10px;
+}
+
+.task .content-section p::selection {
+    background-color: var(--secondary);
+    border: none;
+    outline: none;
+}
+
+
+.task .editing-section {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hoverable:hover {
+    opacity: 0.80;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width:700px) {
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 0px !important;
+    }
+
+    .container .child-container {
+        width: 100%;
+        border-radius: 0px !important;
+    }
+
+    .add-task {
+        width: 100%;
+        height: 20% !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        margin-bottom: 30px !important;
+        border-radius: 0px !important;
+    }
+
+    .add-task input {
+        width: 100%;
+        padding: 0px;
+        height: 50%;
+        padding: 4px 15px;
+    }
+
+    .add-task button {
+        width: 100%;
+        padding: 0px;
+        height: 50%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px !important;
+        gap: 5px;
+    }
+
+    .add-task button:hover {
+        box-shadow: none;
+    }
+
+    .tasks-container {
+        height: 85% !important;
+        width: 100%;
+        padding: 5px !important;
+        margin: 0 !important;
+        border-radius: 0px !important;
+    }
+
+    #tittle {
+        padding: 0 !important;
+        height: 5%;
+        border-radius: 0px !important;
+        margin-bottom: 20px !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .task {
+        padding: 0px 35px;
+        justify-content: space-between;
+        margin: 0;
+        margin-bottom: 4px;
+        border-radius: 10px !important;
+    }
+
+    .counting-section{
+        text-align: left;
+        color: white;
+        text-transform: capitalize;
+        text-decoration: underline;
+        line-height:normal !important;
+        margin-right: 15px;
+    }
+    .counting-section div{
+        font-size: small !important;
+        line-height: normal !important;
+        margin-bottom: 4px;
+    }
+}
